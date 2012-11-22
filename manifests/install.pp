@@ -12,12 +12,13 @@ class gitolite::install {
   }
 
   exec { "Install Gitolite":
-    command => "install -ln",
-    creates => "${gitolite::user_home}/.gitolite",
-    cwd     => "${gitolite::user_home}/gitolite",
-    path    => ["${gitolite::user_home}/gitolite"],
-    require => [Exec["Download Source"]],
-    user    => "${gitolite::user}",
+    command     => "install -ln",
+    creates     => "${gitolite::user_home}/.gitolite",
+    cwd         => "${gitolite::user_home}/gitolite",
+    environment => "HOME=${gitolite::user_home}",
+    path        => ["${gitolite::user_home}/gitolite"],
+    require     => [Exec["Download Source"]],
+    user        => "${gitolite::user}",
   }
 
   if ($gitolite::admin_pub_content != "") {
@@ -41,12 +42,13 @@ class gitolite::install {
   }
 
   exec { "Setup Gitolite":
-    command => "gitolite setup -pk ${gitolite::user_home}/${gitolite::admin_name}.pub",
-    creates => "${gitolite::user_home}/repositories/gitolite-admin.git",
-    cwd     => "${gitolite::user_home}",
-    path    => ["${gitolite::user_home}/bin", "/usr/bin"],
-    require => [Exec["Install Gitolite"], File["Initial Key"]],
-    user    => "${gitolite::user}",
+    command     => "gitolite setup -pk ${gitolite::user_home}/${gitolite::admin_name}.pub",
+    creates     => "${gitolite::user_home}/repositories/gitolite-admin.git",
+    cwd         => "${gitolite::user_home}",
+    environment => "HOME=${gitolite::user_home}",
+    path        => ["${gitolite::user_home}/bin", "/usr/bin"],
+    require     => [Exec["Install Gitolite"], File["Initial Key"]],
+    user        => "${gitolite::user}",
   }
 
 }
