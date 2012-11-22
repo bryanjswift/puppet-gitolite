@@ -9,6 +9,7 @@ class gitolite::install {
     cwd     => "${gitolite::user_home}",
     path    => ["/usr/bin", "/usr/local/bin", "/bin"],
     require => [Class["git"], Class["gitolite::user"]],
+    user    => "${gitolite::user}",
   }
 
   exec { "Install Gitolite":
