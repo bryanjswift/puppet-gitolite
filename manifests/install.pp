@@ -47,7 +47,7 @@ class gitolite::install {
     creates     => "${gitolite::user_home}/repositories/gitolite-admin.git",
     cwd         => "${gitolite::user_home}",
     environment => "HOME=${gitolite::user_home}",
-    path        => ["${gitolite::user_home}/gitolite", "/usr/bin", "/bin"],
+    path        => ["${gitolite::user_home}/bin", "/usr/bin", "/bin"],
     require     => [Exec["Install Gitolite"], File["Initial Key"]],
     user        => "${gitolite::user}",
   }
