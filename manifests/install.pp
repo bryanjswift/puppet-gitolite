@@ -10,9 +10,10 @@ class gitolite::install {
   }
 
   exec { "Install Gitolite":
-    command => "./install -ln",
+    command => "install -ln",
     creates => "${gitolite::user_home}/.gitolite",
     cwd     => "${gitolite::user_home}/gitolite",
+    path    => ["${gitolite::user_home}/gitolite"],
     require => [Exec["Download Source"]],
     user    => "${gitolite::user}",
   }
