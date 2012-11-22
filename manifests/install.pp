@@ -17,12 +17,22 @@ class gitolite::install {
     user    => "${gitolite::user}",
   }
 
-  file { "Initial Key":
-    content => $gitolite::admin_pub_content,
-    ensure  => present,
-    group   => "${gitolite::user}",
-    name    => "${gitolite::user_home}/${gitolite::admin_name}.pub",
-    user    => "${gitolite::user}",
+  if ($gitolite::admin_pub_content != "") {
+    file { "Initial Key":
+      content => $gitolite::admin_pub_content,
+      ensure  => present,
+      group   => "${gitolite::user}",
+      name    => "${gitolite::user_home}/${gitolite::admin_name}.pub",
+      user    => "${gitolite::user}",
+    }
+  } else {
+    file { "Initial Key":
+      ensure  => present,
+      group   => "${gitolite::user}",
+      name    => "${gitolite::user_home}/${gitolite::admin_name}.pub",
+      source  => "${gitolite::admin_pub_src}",
+      user    => "${gitolite::user}",
+    }
   }
 
   exec { "Setup Gitolite":
@@ -30,7 +40,7 @@ class gitolite::install {
     creates => "${gitolite::user_home}/repositories/gitolite-admin.git",
     cwd     => "${gitolite::user_home}",
     path    => ["${gitolite::user_home}/bin", "/usr/bin"],
-    require => [Exec["Install Gitolite"]],
+    require => [Exec["Install Gitolite"], File["Initial Key"]],
     user    => "${gitolite::user}",
   }
 
