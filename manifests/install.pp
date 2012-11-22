@@ -6,6 +6,7 @@ class gitolite::install {
     command => "git clone ${gitolite::src} gitolite",
     creates => "${gitolite::user_home}/gitolite",
     cwd     => "${gitolite::user_home}",
+    path    => ["/usr/bin", "/usr/local/bin", "/bin"],
     require => [Class["gitolite::user"]],
   }
 
