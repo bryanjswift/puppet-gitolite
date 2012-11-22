@@ -1,13 +1,14 @@
 class gitolite::install {
 
-  include git # require git module, this is a dependency defined in Modulefile
+  # require git module, this is a dependency defined in Modulefile, provides Class["git"]
+  include git
 
   exec { "Download Source":
     command => "git clone ${gitolite::src} gitolite",
     creates => "${gitolite::user_home}/gitolite",
     cwd     => "${gitolite::user_home}",
     path    => ["/usr/bin", "/usr/local/bin", "/bin"],
-    require => [Class["gitolite::user"]],
+    require => [Class["git"], Class["gitolite::user"]],
   }
 
   exec { "Install Gitolite":
