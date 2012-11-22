@@ -23,7 +23,7 @@ class gitolite::install {
       ensure  => present,
       group   => "${gitolite::user}",
       name    => "${gitolite::user_home}/${gitolite::admin_name}.pub",
-      user    => "${gitolite::user}",
+      owner   => "${gitolite::user}",
       require => [Class["gitolite::user"]],
     }
   } else {
@@ -32,7 +32,7 @@ class gitolite::install {
       group   => "${gitolite::user}",
       name    => "${gitolite::user_home}/${gitolite::admin_name}.pub",
       source  => "${gitolite::admin_pub_src}",
-      user    => "${gitolite::user}",
+      owner   => "${gitolite::user}",
       require => [Class["gitolite::user"]],
     }
   }
