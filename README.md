@@ -1,19 +1,18 @@
-gitolite
+# gitolite
 
 This is the gitolite module. It installs [gitolite][http://sitaramc.github.com/gitolite]
 from source by cloning the gitolite code and automating the installation process.
 This module is not for managing repositories in gitolite, you should clone the
 gitolite-admin repository from your host and edit the files there to do that.
 
-License
--------
+## License
 
+Apache License, Version 2.0
 
-Contact
--------
+## Contact
 
+Via email [bryan.j.swift@gmail.com](mailto:bryan.j.swift+puppet-gitolite@gmail.com?subject=puppet-gitolite)
 
-Support
--------
+## Support
 
 Please log tickets and issues on [github](http://github.com/bryanjswift/puppet-gitolite/issues)
