@@ -24,6 +24,7 @@ class gitolite::install {
       group   => "${gitolite::user}",
       name    => "${gitolite::user_home}/${gitolite::admin_name}.pub",
       user    => "${gitolite::user}",
+      require => [Class["gitolite::user"]],
     }
   } else {
     file { "Initial Key":
@@ -32,6 +33,7 @@ class gitolite::install {
       name    => "${gitolite::user_home}/${gitolite::admin_name}.pub",
       source  => "${gitolite::admin_pub_src}",
       user    => "${gitolite::user}",
+      require => [Class["gitolite::user"]],
     }
   }
 
