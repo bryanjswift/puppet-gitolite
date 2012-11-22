@@ -33,7 +33,7 @@ class gitolite(
   $user_home         = '/home/gitolite',
 ) {
 
-  if ($gitolite::admin_pub_content == "" && $gitolite::admin_pub_src == "") {
+  if ($gitolite::admin_pub_content == "" and $gitolite::admin_pub_src == "") {
     fail("No source or content for admin key")
   }
 
