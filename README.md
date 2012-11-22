@@ -7,7 +7,7 @@ gitolite-admin repository from your host and edit the files there to do that.
 
 ## TODO
 
-See [todo.ft](https://github.com/bryanjswift/puppet-gitolite/blob/master/todo.ft)
+See [todo.ft](https://github.com/bryanjswift/puppet-gitolite/blob/master/todo.md)
 
 ## License
 
