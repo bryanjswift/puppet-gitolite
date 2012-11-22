@@ -60,6 +60,6 @@ class gitolite(
     fail("No source or content for admin key")
   }
 
-  include gitolite::install
+  include gitolite::user, gitolite::install
 
 }
